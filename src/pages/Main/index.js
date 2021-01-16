@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Contents, TextInput } from './styles';
+import { Contents } from './styles';
 
 import Modal from '../../components/Modal';
 import Frame from '../../components/Frame';
@@ -23,14 +23,6 @@ export default function MainPage() {
 
   return (
     <div>
-      <Modal
-        contentId={contentIdModal}
-        show={showModal}
-        handleClose={handleClose}
-      >
-        <TextInput />
-        <TextInput />
-      </Modal>
       <Contents showModal={showModal}>
         <ul>
           <li>
@@ -99,6 +91,11 @@ export default function MainPage() {
           </li>
         </ul>
       </Contents>
+      <Modal
+        contentId={contentIdModal}
+        show={showModal}
+        handleClose={handleClose}
+      ></Modal>
     </div>
   );
 }

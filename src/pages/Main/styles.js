@@ -12,9 +12,3 @@ export const Contents = styled.div`
     margin: 0px 12px;
   }
 `;
-
-export const TextInput = styled.textarea`
-  background-color: #666;
-  width: 100%;
-  height: 200px;
-`;
