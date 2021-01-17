@@ -1,12 +1,21 @@
 import React from 'react';
 
-import { ButtonContainer, Label } from './styles';
+import { Primary, Cancel, Label } from './styles';
 
 export default function Button({ children, label, onClick, cancel }) {
-  return (
-    <ButtonContainer cancel={cancel} onClick={onClick}>
-      <Label cancel={cancel}>{label}</Label>
-      {children}
-    </ButtonContainer>
-  );
+  if (cancel) {
+    return (
+      <Cancel onClick={onClick}>
+        <Label cancel>{label}</Label>
+        {children}
+      </Cancel>
+    );
+  } else {
+    return (
+      <Primary onClick={onClick}>
+        <Label>{label}</Label>
+        {children}
+      </Primary>
+    );
+  }
 }
