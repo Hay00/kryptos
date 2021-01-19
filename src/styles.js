@@ -15,7 +15,6 @@ html {
     border: 0;
     background: none;
     font-family: 'Source Sans Pro', sans-serif;
-    color: var(--black);
     transition: color .2s ease-out;
 }
 ul {

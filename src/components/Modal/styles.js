@@ -13,14 +13,14 @@ export const Content = styled.div`
     width: 80%;
   }
   position: fixed;
-  background: #333;
+  background: #212121;
   height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0px 16px;
-  padding-top: 16px;
-  padding-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 16px;
 `;
 
 export const Container = styled.div`
@@ -35,23 +35,36 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   color: #fff;
-  background-color: #212121;
+  background-color: #000000;
   padding: 12px 16px;
 `;
 
+export const TextContainer = styled.div`
+  margin-top: 8px;
+`;
+
 export const TextInput = styled.textarea`
-  background-color: #666;
+  font-size: 0.875em;;
+  background-color: #484848;
   color: #fff;
   width: 100%;
-  height: 200px;
+  box-sizing: border-box;
+  height: 150px;
   padding: 16px;
   margin-bottom: 8px;
   resize: none;
 `;
 
 export const ButtonsContainer = styled.div`
-  @media (max-width: 512px) {
-    display: flex;
+  display: flex;
+  justify-content: ${(props) => (props.cancel ? 'flex-end' : 'auto')};
+
+  @media (min-width: 376px) and (max-width: 512px) {
     justify-content: space-between;
+  }
+  @media (max-width: 375px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 `;

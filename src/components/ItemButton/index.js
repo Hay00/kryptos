@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Container, Text } from './styles';
+import { Container, Title } from './styles';
 
 export default function ItemButton({onClick, children }) {
   return (
     <Container onClick={onClick}>
-      <Text>{children}</Text>
+      <Title>{children}</Title>
     </Container>
   );
 }

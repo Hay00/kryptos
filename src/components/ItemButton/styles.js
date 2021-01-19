@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.button`
   width: 184px;
-  //text-decoration: none;
   background-color: #222629;
-  :hover {
-    background-color: #363b40;
-  }
+  cursor: pointer;
+
   border: 1px solid #424242;
   border-radius: 4px;
   padding: 16px 0px;
@@ -14,8 +12,13 @@ export const Container = styled.button`
   @media (max-width: 512px) {
     width: 100%;
   }
+
+  :hover {
+    background-color: #363b40;
+  }
 `;
 
-export const Text = styled.p`
+export const Title = styled.p`
+  font-size: 14px;
   text-align: center;
 `;

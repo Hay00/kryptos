@@ -9,12 +9,11 @@ export const Container = styled.div`
   background-color: #333;
 `;
 
-export const Logo = styled.h1`
-  font-size: 64px;
+export const Logo = styled.img`
   padding: 16px 32px;
   margin: 12px 0px;
   border-radius: 100%;
-  background-color: #fff;
+  width: 192px;
 `;
 
 export const Title = styled.p`

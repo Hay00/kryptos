@@ -1,14 +1,10 @@
 class Base64 {
-  constructor(value, isEncode) {
-    this.value = value;
-    this.isEncode = isEncode;
+  encode(input) {
+    return btoa(input);
   }
 
-  translate() {
-    if (!this.isEncode) {
-      return atob(this.value);
-    }
-    return btoa(this.value);
+  decode(input) {
+    return atob(input);
   }
 }
 
