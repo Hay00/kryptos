@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background-color: #424242;
   margin: 24px 0px;
+  border-radius: 12px;
 `;
 
 export const Title = styled.h3`
@@ -11,6 +12,8 @@ export const Title = styled.h3`
   padding: 16px;
   padding-top: 12px;
   padding-bottom: 12px;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
 `;
 
 export const Content = styled.div`

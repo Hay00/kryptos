@@ -1,4 +1,4 @@
-class Binary {
+export default class StringBin {
   encode(input) {
     var characters = input.split('');
 
@@ -16,9 +16,7 @@ class Binary {
     let bytesLeft = input;
     let result = '';
 
-    // Check if we have some bytes left
     while (bytesLeft.length) {
-      // Get the first digits
       const byte = bytesLeft.substr(0, 8);
       bytesLeft = bytesLeft.substr(8);
 
@@ -29,4 +27,3 @@ class Binary {
   }
 }
 
-module.exports = Binary;

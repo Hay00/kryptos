@@ -1,102 +1,67 @@
-const binary = require('./binary');
-const base64 = require('./base64');
-const hackerize = require('./hackerize');
+import addNonsense from './addNonsense';
+import adler32 from './adler32';
+import base64 from './base64';
+import cesarShift from './cesarShift';
+import crc32 from './crc32';
+import escapeString from './escapeString';
+import hackerize from './hackerize';
+import html from './html';
+import md2 from './md2';
+import md4 from './md4';
+import md5 from './md5';
+import morseCode from './morseCode';
+import passGenerator from './passGenerator';
+import reverseStr from './reverseStr';
+import ripe160 from './ripe160';
+import rot13 from './rot13';
+import scrambleText from './scrambleText';
+import sha1 from './sha1';
+import sha256 from './sha256';
+import sha512 from './sha512';
+import strDec from './strDec';
+import strHex from './strHex';
+import stringBin from './stringBin';
+import stringLower from './stringLower';
+import stringUpper from './stringUpper';
+import strOct from './strOct';
+import url from './url';
+import whirlpool from './whirlpool';
 
-export const utils = {
-  escapeString(value) {
-    return value;
-  },
-  url(value) {
-    return value;
-  },
-  html(value) {
-    return value;
-  },
-  stringUpper(value) {
-    return value;
-  },
-  stringLower(value) {
-    return value;
-  },
-  reverseStr(value) {
-    return value;
-  },
-  stringBin(value, isEncode) {
-    const tempObj = new binary();
-    if (isEncode) {
-      return tempObj.encode(value);
-    }
-    return tempObj.decode(value);
-  },
-  strDec(value) {
-    return value;
-  },
-  strOct(value) {
-    return value;
-  },
-  strHex(value) {
-    return value;
-  },
-  base64(value, isEncode) {
-    const tempObj = new base64();
-    if (isEncode) {
-      return tempObj.encode(value);
-    }
-    return tempObj.decode(value);
-  },
-  rot13(value) {
-    return value;
-  },
-  cesarShift(value) {
-    return value;
-  },
-  morseCode(value) {
-    return value;
-  },
-  hackerize(value, isEncode) {
-    const tempObj = new hackerize();
-    if (isEncode) {
-      return tempObj.encode(value);
-    }
-    return tempObj.decode(value);
-  },
-  sha1(value) {
-    return value;
-  },
-  sha256(value) {
-    return value;
-  },
-  sha512(value) {
-    return value;
-  },
-  ripe160(value) {
-    return value;
-  },
-  crc32(value) {
-    return value;
-  },
-  adle32(value) {
-    return value;
-  },
-  whirlpool(value) {
-    return value;
-  },
-  md2(value) {
-    return value;
-  },
-  md4(value) {
-    return value;
-  },
-  md5(value) {
-    return value;
-  },
-  passGenerator(value) {
-    return value;
-  },
-  scrambleText(value) {
-    return value;
-  },
-  addNonsense(value) {
-    return value;
-  },
+const UTILS = {
+  addNonsense,
+  adler32,
+  base64,
+  cesarShift,
+  crc32,
+  escapeString,
+  hackerize,
+  html,
+  md2,
+  md4,
+  md5,
+  morseCode,
+  passGenerator,
+  reverseStr,
+  ripe160,
+  rot13,
+  scrambleText,
+  sha1,
+  sha256,
+  sha512,
+  strDec,
+  strHex,
+  stringBin,
+  stringLower,
+  stringUpper,
+  strOct,
+  url,
+  whirlpool,
 };
+
+export default class UtilFactory {
+  static createInstance(item) {
+    const utilCreator = UTILS[item];
+    const myUtil = utilCreator ? new utilCreator() : null;
+    return myUtil;
+  }
+}

@@ -1,4 +1,4 @@
-class Base64 {
+export default class Base64 {
   encode(input) {
     return btoa(input);
   }
@@ -7,5 +7,3 @@ class Base64 {
     return atob(input);
   }
 }
-
-module.exports = Base64;

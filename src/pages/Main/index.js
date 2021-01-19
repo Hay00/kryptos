@@ -22,7 +22,10 @@ export default function MainPage() {
       let frameContent = [];
       sectionContents.forEach((item, key) => {
         frameContent.push(
-          <ItemButton key={key} onClick={() => handleOpen(item.id)}>
+          <ItemButton
+            key={key}
+            onClick={() => handleOpen(item.id, item.canDecode)}
+          >
             {item.title}
           </ItemButton>
         );
@@ -41,12 +44,12 @@ export default function MainPage() {
     setContents(frames);
   }, []);
 
-  function handleOpen(id) {
-    setModalProps({ id: id, show: true });
+  function handleOpen(id, canDecode) {
+    setModalProps({ id: id, canDecode: canDecode, show: true });
   }
 
   function handleClose() {
-    setModalProps({ id: '', show: false });
+    setModalProps({ id: '', canDecode: false, show: false });
   }
 
   return (
@@ -56,6 +59,7 @@ export default function MainPage() {
       </Contents>
       <Modal
         contentId={modalProps.id}
+        canDecode={modalProps.canDecode}
         show={modalProps.id}
         handleClose={handleClose}
       ></Modal>

@@ -12,13 +12,15 @@ import {
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import Button from '../Button';
 
-const { utils } = require('../../utils');
+import UtilFactory from '../../utils';
 
-export default function Modal({ contentId, handleClose, show }) {
+export default function Modal({ contentId, canDecode, handleClose, show }) {
   const modalRef = createRef();
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [index, setIndex] = useState(-1);
+
+  const myUtil = UtilFactory.createInstance(contentId);
 
   /**
    * Bloqueia o scroll quando o modal estiver aberto
@@ -78,10 +80,11 @@ export default function Modal({ contentId, handleClose, show }) {
    * Codifica um valor
    */
   function encode() {
+    console.log(myUtil);
     if (input.length < 1) {
       alert('Input is empty!');
     } else {
-      setOutput(utils[contentId](input, true));
+      setOutput(myUtil.encode(input));
     }
   }
 
@@ -92,7 +95,7 @@ export default function Modal({ contentId, handleClose, show }) {
     if (output.length < 1) {
       alert('Output is empty!');
     } else {
-      setInput(utils[contentId](output, false));
+      setInput(myUtil.decode(output));
     }
   }
 
@@ -107,9 +110,11 @@ export default function Modal({ contentId, handleClose, show }) {
           <Button onClick={encode} label={'Encode'}>
             <BsArrowDown size={24} />
           </Button>
-          <Button onClick={decode} label={'Decode'}>
-            <BsArrowUp size={24} />
-          </Button>
+          {canDecode ? (
+            <Button onClick={decode} label={'Decode'}>
+              <BsArrowUp size={24} />
+            </Button>
+          ) : null}
         </ButtonsContainer>
         <TextContainer>
           <Title>Output</Title>
