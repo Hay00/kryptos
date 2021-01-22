@@ -1,9 +1,9 @@
-export default class Name {
+export default class EscapeStr {
   encode(input) {
-    return input;
+    return escape(input);
   }
 
   decode(input) {
-    return input;
+    return unescape(input);
   }
 }

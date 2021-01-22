@@ -37,6 +37,8 @@ export const Title = styled.p`
   color: #fff;
   background-color: #000000;
   padding: 12px 16px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 `;
 
 export const TextContainer = styled.div`
@@ -44,7 +46,7 @@ export const TextContainer = styled.div`
 `;
 
 export const TextInput = styled.textarea`
-  font-size: 0.875em;;
+  font-size: 0.875em;
   background-color: #484848;
   color: #fff;
   width: 100%;
@@ -53,6 +55,8 @@ export const TextInput = styled.textarea`
   padding: 16px;
   margin-bottom: 8px;
   resize: none;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 `;
 
 export const ButtonsContainer = styled.div`

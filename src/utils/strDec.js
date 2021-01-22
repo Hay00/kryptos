@@ -1,9 +1,13 @@
-export default class Name {
+export default class StrToDec {
   encode(input) {
-    return input;
+    let output = '';
+    for (let i = 0; i < input.length; i++) {
+      output += `&#${input[i].charCodeAt()};`;
+    }
+    return output;
   }
 
   decode(input) {
-    return input;
+    return input.toString();
   }
 }

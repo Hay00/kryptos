@@ -1,9 +1,5 @@
-export default class Name {
+export default class StrUpper {
   encode(input) {
-    return input;
-  }
-
-  decode(input) {
-    return input;
+    return input.toUpperCase(input);
   }
 }

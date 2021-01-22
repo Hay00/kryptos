@@ -1,9 +1,5 @@
-export default class Name {
+export default class StrLower {
   encode(input) {
-    return input;
-  }
-
-  decode(input) {
-    return input;
+    return input.toLowerCase(input);
   }
 }

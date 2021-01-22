@@ -1,4 +1,4 @@
-export default class Name {
+export default class CesarShift {
   encode(input) {
     return input;
   }

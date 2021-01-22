@@ -1,4 +1,4 @@
-export default class passGenerator {
+export default class PassGenerator {
   encode(input) {
     return input;
   }

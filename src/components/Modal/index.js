@@ -80,11 +80,14 @@ export default function Modal({ contentId, canDecode, handleClose, show }) {
    * Codifica um valor
    */
   function encode() {
-    console.log(myUtil);
-    if (input.length < 1) {
-      alert('Input is empty!');
-    } else {
-      setOutput(myUtil.encode(input));
+    try {
+      if (input.length < 1) {
+        alert('Input is empty!');
+      } else {
+        setOutput(myUtil.encode(input));
+      }
+    } catch (e) {
+      alert(e);
     }
   }
 
@@ -92,10 +95,14 @@ export default function Modal({ contentId, canDecode, handleClose, show }) {
    * Decodifica um valor
    */
   function decode() {
-    if (output.length < 1) {
-      alert('Output is empty!');
-    } else {
-      setInput(myUtil.decode(output));
+    try {
+      if (output.length < 1) {
+        alert('Output is empty!');
+      } else {
+        setInput(myUtil.decode(output));
+      }
+    } catch (e) {
+      alert(e);
     }
   }
 

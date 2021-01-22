@@ -6,7 +6,7 @@ export const Container = styled.button`
   background-color: #222629;
   cursor: pointer;
   border: 1px solid #424242;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 16px 0px;
 
   @media (max-width: 512px) {

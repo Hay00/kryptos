@@ -1,4 +1,4 @@
-export default class Name {
+export default class MorseCode {
   encode(input) {
     return input;
   }

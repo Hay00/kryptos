@@ -5,7 +5,6 @@ import cesarShift from './cesarShift';
 import crc32 from './crc32';
 import escapeString from './escapeString';
 import hackerize from './hackerize';
-import html from './html';
 import md2 from './md2';
 import md4 from './md4';
 import md5 from './md5';
@@ -24,7 +23,8 @@ import stringBin from './stringBin';
 import stringLower from './stringLower';
 import stringUpper from './stringUpper';
 import strOct from './strOct';
-import url from './url';
+import uri from './uri';
+import uriComp from './uriComp';
 import whirlpool from './whirlpool';
 
 const UTILS = {
@@ -35,7 +35,6 @@ const UTILS = {
   crc32,
   escapeString,
   hackerize,
-  html,
   md2,
   md4,
   md5,
@@ -54,14 +53,14 @@ const UTILS = {
   stringLower,
   stringUpper,
   strOct,
-  url,
+  uri,
+  uriComp,
   whirlpool,
 };
 
 export default class UtilFactory {
   static createInstance(item) {
     const utilCreator = UTILS[item];
-    const myUtil = utilCreator ? new utilCreator() : null;
-    return myUtil;
+    return utilCreator ? new utilCreator() : null;
   }
 }

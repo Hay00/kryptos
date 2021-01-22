@@ -1,9 +1,19 @@
-export default class Name {
+export default class ReverseString {
   encode(input) {
-    return input;
+    const inputLen = input.length - 1;
+    let output = '';
+    for (let i = inputLen; i >= 0; i--) {
+      output += input[i];
+    }
+    return output;
   }
 
   decode(input) {
-    return input;
+    const inputLen = input.length - 1;
+    let output = '';
+    for (let i = inputLen; i >= 0; i--) {
+      output += input[i];
+    }
+    return output;
   }
 }

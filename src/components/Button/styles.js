@@ -10,11 +10,6 @@ const Button = styled.button`
   margin: 8px;
   cursor: pointer;
 
-  :focus {
-    outline: 2px solid #fff;
-    border-radius: 0;
-  }
-
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -27,15 +22,16 @@ const Button = styled.button`
 
 export const Primary = styled(Button)`
   background-color: #e0e0e0;
-  :hover {
+  :hover,
+  :focus {
     background-color: #aeaeae;
   }
-  
 `;
 
 export const Cancel = styled(Button)`
   background-color: #d32f2f;
-  :hover {
+  :hover,
+  :focus {
     background-color: #9a0007;
   }
 `;
