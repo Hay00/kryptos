@@ -2,7 +2,7 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
-A simple web app built with ReactJs, that offers encoding and encryption tools running only on client side. It was inspired by two popular encryption and encoding websites [Crypos](http://www.crypo.cf/tools/) and [Cryptii](https://cryptii.com)
+A simple web app built with ReactJs, that offers encoding and encryption tools running only on client side. It was inspired by two popular encryption and encoding websites [Crypo](http://www.crypo.cf/tools/) and [Cryptii](https://cryptii.com)
 
 ## Getting started
 
