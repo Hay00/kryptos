@@ -1,13 +1,14 @@
+import TextEncoder from './Text/';
+
 export default class StrToDec {
   encode(input) {
-    let output = '';
-    for (let i = 0; i < input.length; i++) {
-      output += `&#${input[i].charCodeAt()};`;
-    }
-    return output;
+    input = TextEncoder.codePointsFromString(input);
+    return Array.from(input).join(' ');
   }
 
   decode(input) {
-    return input.toString();
+    input = input.trimEnd();
+    const result = Array.from(input.split(' '));
+    return TextEncoder.stringFromCodePoints(result);
   }
 }

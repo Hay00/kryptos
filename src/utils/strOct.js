@@ -1,18 +1,18 @@
+import TextEncoder from './Text/';
+
 export default class StrToOct {
   encode(input) {
-    let output = '';
-    for (let i = 0; i < input.length; i++) {
-      output += `${input[i].charCodeAt().toString(8)} `;
-    }
-    return output.trimEnd();
+    input = TextEncoder.codePointsFromString(input);
+    return Array.from(input)
+      .map((char) => char.toString(8))
+      .join(' ');
   }
 
   decode(input) {
-    let toDecode = input.split(' ');
-    return toDecode
-      .map(function (octate) {
-        return String.fromCharCode(parseInt(octate, 8));
-      })
-      .join('');
+    input = input.trimEnd();
+    const result = Array.from(input.split(' ')).map((char) =>
+      parseInt(char, 8).toString()
+    );
+    return TextEncoder.stringFromCodePoints(result);
   }
 }
