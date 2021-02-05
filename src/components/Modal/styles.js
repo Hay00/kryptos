@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  display: ${(props) => (props.show ? 'flex' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,52 +33,13 @@ export const Content = styled.div`
   padding: 16px;
 `;
 
-export const Container = styled.div`
-  display: ${(props) => (props.show ? 'flex' : 'none')};
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-`;
-
-export const Title = styled.p`
-  color: #fff;
-  background-color: #000000;
-  padding: 12px 16px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-`;
-
-export const TextContainer = styled.div`
-  margin-top: 8px;
-`;
-
-export const TextInput = styled.textarea`
-  font-size: 0.875em;
-  background-color: #484848;
-  color: #fff;
-  width: 100%;
-  box-sizing: border-box;
-  height: 150px;
-  padding: 16px;
-  margin-bottom: 8px;
-  resize: none;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-`;
-
-export const ButtonsContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: ${(props) => (props.cancel ? 'flex-end' : 'auto')};
-
-  @media (min-width: 376px) and (max-width: 512px) {
-    justify-content: space-between;
+  @media (max-width: 512px) {
+    justify-content: center;
   }
-  @media (max-width: 375px) {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+
+  @media (min-width: 513px) {
+    justify-content: flex-end;
   }
 `;
