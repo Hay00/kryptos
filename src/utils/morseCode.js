@@ -58,17 +58,17 @@ export default class MorseCode {
   ];
 
   encode(input) {
-    return Array.from(input.toLowerCase().replace(/\n/g, '').split(' '))
+    return Array.from(
+      input.trimEnd().toLowerCase().replace(/\n/g, '').split(' ')
+    )
       .map((word) =>
         Array.from(word)
-          .map((char, index) => {
+          .map((char) => {
             const morseChar = this.morseCode[this.alphabet.indexOf(char)];
             if (morseChar) {
               return morseChar;
             }
-            throw new Error(
-              `Char ${char} at index [${index}] doesn't exist in Morse Code`
-            );
+            throw new Error(`Char ${char} doesn't exist in Morse Code`);
           })
           .join(' ')
       )
