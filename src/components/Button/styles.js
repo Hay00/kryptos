@@ -22,17 +22,21 @@ const Button = styled.button`
 
 export const Primary = styled(Button)`
   background-color: #e0e0e0;
-  :hover,
-  :focus {
+  :hover {
     background-color: #aeaeae;
+  }
+  :focus {
+    box-shadow: 0 0 0 3px #63a4ff;
   }
 `;
 
 export const Cancel = styled(Button)`
   background-color: #d32f2f;
-  :hover,
-  :focus {
+  :hover {
     background-color: #9a0007;
+  }
+  :focus {
+    box-shadow: 0 0 0 3px #63a4ff;
   }
 `;
 

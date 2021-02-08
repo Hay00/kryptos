@@ -59,7 +59,7 @@ export default function Modal({ children, handleClose, show }) {
    */
   function handleTabKey(e) {
     const focusableElements = modalRef.current.querySelectorAll(
-      'button, textarea'
+      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
     );
 
     const maxIndex = focusableElements.length - 1;
