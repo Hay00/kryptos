@@ -17,6 +17,12 @@ export const Contents = styled.div`
   }
 `;
 
+export const ModalTitle = styled.h1`
+  font-size: calc(16px + 1vw);
+  color: #fff;
+  margin: 12px auto;
+`;
+
 export const Title = styled.p`
   color: #fff;
   background-color: #000000;
@@ -25,11 +31,11 @@ export const Title = styled.p`
   border-top-right-radius: 4px;
 `;
 
-export const TextContainer = styled.div`
+export const ModalContent = styled.div`
   margin-top: 8px;
 `;
 
-export const TextInput = styled.textarea`
+export const TextArea = styled.textarea`
   font-size: 0.875em;
   background-color: #484848;
   color: #fff;
@@ -54,5 +60,17 @@ export const ButtonsContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+`;
+
+export const Input = styled.input.attrs({ type: 'number' })`
+  background-color: #d3d3d3;
+  padding: 6px;
+  border-radius: 4px;
+  *:focus:not(.focus-visible) {
+    box-shadow: none;
+  }
+  :focus-visible {
+    box-shadow: 0 0 0 3px #63a4ff;
   }
 `;

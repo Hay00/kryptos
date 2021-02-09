@@ -80,9 +80,9 @@ export default class MorseCode {
       .map((word) =>
         Array.from(word.split(' '))
           .map((char, index) => {
-            const aplhabetChar = this.alphabet[this.morseCode.indexOf(char)];
-            if (aplhabetChar) {
-              return aplhabetChar;
+            const alphabetChar = this.alphabet[this.morseCode.indexOf(char)];
+            if (alphabetChar) {
+              return alphabetChar;
             }
             throw new Error(`Char at index [${index}] caused a parsing error!`);
           })

@@ -10,7 +10,7 @@ import {
 export default function Checkbox({ className, checked, children, ...props }) {
   return (
     <Container>
-      <div>
+      <div style={{ height: '20px' }}>
         <HiddenCheckbox checked={checked} {...props} />
         <StyledCheckbox checked={checked}>
           <Icon viewBox="0 0 24 24">
@@ -18,7 +18,9 @@ export default function Checkbox({ className, checked, children, ...props }) {
           </Icon>
         </StyledCheckbox>
       </div>
-      <CheckboxLabel>{children}</CheckboxLabel>
+      <div>
+        <CheckboxLabel>{children}</CheckboxLabel>
+      </div>
     </Container>
   );
 }

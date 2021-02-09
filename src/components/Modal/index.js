@@ -9,8 +9,8 @@ export default function Modal({ children, handleClose, show }) {
   const modalElement = document.getElementById('modalFocus');
 
   /**
-   * Bloqueia o scroll enquanto o modal estiver aberto
-   * Ao fechar reseta o indice da navegação
+   * Block scroll when modal is open
+   * Reset modal navigation index on closing modal
    */
   useEffect(() => {
     document.body.style.overflow = show ? 'hidden' : 'unset';
@@ -20,23 +20,23 @@ export default function Modal({ children, handleClose, show }) {
   }, [show]);
 
   /**
-   * Verifica se o modal perdeu o foco através do click
+   * Checks if modal lost focus by mouse click
    */
   useEffect(() => {
-    function lostFocous(e) {
+    function lostFocus(e) {
       if (!modalElement.contains(e.target)) {
         handleClose();
       }
     }
 
     if (show) {
-      document.addEventListener('click', lostFocous);
+      document.addEventListener('click', lostFocus);
     }
-    return () => document.removeEventListener('click', lostFocous);
+    return () => document.removeEventListener('click', lostFocus);
   }, [handleClose, modalElement, show]);
 
   /**
-   * Key e focous listener do modal
+   * Modal key and focus listener
    */
   useEffect(() => {
     const keyListenersMap = new Map([
@@ -54,12 +54,12 @@ export default function Modal({ children, handleClose, show }) {
   });
 
   /**
-   * Responsável pela navegação usando 'TAB'
-   * @param {Event} e evento
+   * Tab navigation
+   * @param {Event} e component event
    */
   function handleTabKey(e) {
     const focusableElements = modalRef.current.querySelectorAll(
-      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+      'a[href], button, textarea, input[type="number"], input[type="text"], input[type="radio"], input[type="checkbox"], select'
     );
 
     const maxIndex = focusableElements.length - 1;

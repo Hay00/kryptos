@@ -18,6 +18,13 @@ const Button = styled.button`
     justify-content: center;
     width: 100%;
   }
+
+  *:focus:not(.focus-visible) {
+    box-shadow: none;
+  }
+  :focus-visible {
+    box-shadow: 0 0 0 3px #63a4ff;
+  }
 `;
 
 export const Primary = styled(Button)`
@@ -25,18 +32,12 @@ export const Primary = styled(Button)`
   :hover {
     background-color: #aeaeae;
   }
-  :focus {
-    box-shadow: 0 0 0 3px #63a4ff;
-  }
 `;
 
 export const Cancel = styled(Button)`
   background-color: #d32f2f;
   :hover {
     background-color: #9a0007;
-  }
-  :focus {
-    box-shadow: 0 0 0 3px #63a4ff;
   }
 `;
 
