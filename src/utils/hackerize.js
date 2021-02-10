@@ -3,22 +3,25 @@ export default class Hackerize {
   hackerized = 'Λß↻Ð☰∲ç╫¡¿├↑ღ∏☐þ¶┏§⊥üƴ₪✕¥ᶾ▪';
 
   encode(input) {
-    let output = '';
-    input = input.toLowerCase();
-    for (let i = 0; i < input.length; i++) {
-      const c = input[i];
-      const conv = this.hackerized[this.alphabet.indexOf(c)];
-      output = conv ? (output += conv) : (output += c);
-    }
-    return output;
+    return this.swapChars(input.toLowerCase());
   }
 
   decode(input) {
+    return this.swapChars(input, false);
+  }
+
+  swapChars(str, encode = true) {
     let output = '';
-    for (let i = 0; i < input.length; i++) {
-      const c = input[i];
-      const conv = this.alphabet[this.hackerized.indexOf(c)];
-      output = conv ? (output += conv) : (output += c);
+    // Swap chars between alphabets
+    for (let i = 0; i < str.length; i++) {
+      const c = str[i];
+      let newChar = '';
+      if (encode) {
+        newChar = this.hackerized[this.alphabet.indexOf(c)];
+      } else {
+        newChar = this.alphabet[this.hackerized.indexOf(c)];
+      }
+      output = newChar ? (output += newChar) : (output += c);
     }
     return output;
   }

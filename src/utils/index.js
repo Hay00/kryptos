@@ -60,7 +60,10 @@ const UTILS = {
 
 export default class UtilFactory {
   static createInstance(item) {
+    // Get util class from parameter
     const utilCreator = UTILS[item];
+
+    // Return a new instance from this util exists
     return utilCreator ? new utilCreator() : null;
   }
 }

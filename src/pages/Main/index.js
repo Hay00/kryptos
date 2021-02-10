@@ -38,7 +38,7 @@ export default function MainPage() {
   // Create a new util
   const myUtil = UtilFactory.createInstance(modalProps.id);
 
-  // Store content to avoid lag render due to state change
+  // Store content to avoid lag render due to quick state change
   useEffect(() => {
     const frames = pageContents.map((section, key) => (
       <li key={key}>
@@ -81,6 +81,9 @@ export default function MainPage() {
     setEncodedText('');
   }
 
+  /**
+   * Create a password
+   */
   function createPassword() {
     try {
       if (passLen.length < 1) {
@@ -184,11 +187,13 @@ export default function MainPage() {
    * @param {String} type item type
    */
   function modalButtons(type) {
+    // Button labels
     const buttonLabels = {
       hash: 'Create Hash',
       password: 'Create Password',
       transform: 'Transform Text',
     };
+    // Functions used on the button
     const buttonOnClick = {
       hash: encode,
       password: createPassword,

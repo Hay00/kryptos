@@ -23,12 +23,14 @@ export default function Modal({ children, handleClose, show }) {
    * Checks if modal lost focus by mouse click
    */
   useEffect(() => {
+    // Checks if component lost focus
     function lostFocus(e) {
       if (!modalElement.contains(e.target)) {
         handleClose();
       }
     }
 
+    // If component is visible adds click away focus listener
     if (show) {
       document.addEventListener('click', lostFocus);
     }
@@ -39,6 +41,7 @@ export default function Modal({ children, handleClose, show }) {
    * Modal key and focus listener
    */
   useEffect(() => {
+    // Special keys used (ESC,SPACE)
     const keyListenersMap = new Map([
       [27, handleClose],
       [9, handleTabKey],
@@ -63,13 +66,18 @@ export default function Modal({ children, handleClose, show }) {
     );
 
     const maxIndex = focusableElements.length - 1;
+
+    // Find if user is holding shift key
     let nextIndex = (e.shiftKey ? -1 : 1) + index;
+
+    // Change index to the next focused element
     if (nextIndex > maxIndex) {
       nextIndex = 0;
     } else if (nextIndex < 0) {
       nextIndex = maxIndex;
     }
 
+    // Focus on the element
     focusableElements[nextIndex].focus();
     e.preventDefault();
     setIndex(nextIndex);
