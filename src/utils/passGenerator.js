@@ -24,11 +24,9 @@ export default class PassGenerator {
       throw new Error('Please, select at least one option!');
     }
 
-    const maxChar = chars.length - 1;
-
     let password = '';
     for (let i = 0; i < passLength; i++) {
-      password += chars[Math.floor(Math.random() * (maxChar - 1))];
+      password += chars[Math.floor(Math.random() * chars.length)];
     }
     return password;
   }

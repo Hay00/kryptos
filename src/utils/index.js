@@ -13,10 +13,10 @@ import passGenerator from './passGenerator';
 import reverseStr from './reverseStr';
 import ripe160 from './ripe160';
 import rot13 from './rot13';
-import scrambleText from './scrambleText';
 import sha1 from './sha1';
 import sha256 from './sha256';
 import sha512 from './sha512';
+import shuffleText from './shuffleText';
 import strDec from './strDec';
 import strHex from './strHex';
 import stringBin from './stringBin';
@@ -43,10 +43,10 @@ const UTILS = {
   reverseStr,
   ripe160,
   rot13,
-  scrambleText,
   sha1,
   sha256,
   sha512,
+  shuffleText,
   strDec,
   strHex,
   stringBin,

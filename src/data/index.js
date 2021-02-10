@@ -98,8 +98,8 @@ export const pageContents = [
         ],
       },
       {
-        id: 'scrambleText',
-        title: 'Scramble Text',
+        id: 'shuffleText',
+        title: 'Shuffle Text',
         type: 'transform',
       },
       {
