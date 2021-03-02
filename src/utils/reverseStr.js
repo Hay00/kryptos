@@ -1,3 +1,5 @@
+import TextEncoder from './Text/';
+
 export default class ReverseString {
   encode(input) {
     return this.swapChars(input);
@@ -8,12 +10,13 @@ export default class ReverseString {
   }
 
   swapChars(str) {
+    str = TextEncoder.codePointsFromString(str);
     const inputLen = str.length - 1;
-    let output = '';
+    let output = [];
     // Just inverts characters positions
     for (let i = inputLen; i >= 0; i--) {
-      output += str[i];
+      output.push(str[i]);
     }
-    return output;
+    return TextEncoder.stringFromCodePoints(output);
   }
 }

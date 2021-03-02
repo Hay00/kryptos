@@ -7,7 +7,7 @@ import {
   CheckboxLabel,
 } from './styles';
 
-export default function Checkbox({ className, checked, children, ...props }) {
+export default function Checkbox({ checked, children, ...props }) {
   return (
     <Container>
       <div style={{ height: '20px' }}>

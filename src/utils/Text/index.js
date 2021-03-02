@@ -10,7 +10,7 @@ export default class TextEncoder {
    */
   static validateCodePoint(codePoint) {
     return (
-      isFinite(codePoint) &&
+      Number.isFinite(codePoint) &&
       codePoint >= 0 &&
       codePoint <= 0x10ffff &&
       Math.floor(codePoint) === codePoint
@@ -46,7 +46,7 @@ export default class TextEncoder {
     // Create a fixed size array that gets sliced at the end
     const codeUnits = new Array(codePoints.length * 2);
     let j = 0;
-    let i, codePoint;
+    let i; let codePoint;
 
     for (i = 0; i < codePoints.length; i++) {
       codePoint = codePoints[i];
@@ -82,10 +82,10 @@ export default class TextEncoder {
     // In the worst case every string code unit needs to be translated to
     // a single code point each
     // Create a fixed size array that gets sliced at the end
-    const length = string.length;
+    const {length} = string;
     const codePoints = new Array(length);
 
-    let codeUnit, nextCodeUnit;
+    let codeUnit; let nextCodeUnit;
     let j = 0;
     let i = 0;
 
@@ -159,7 +159,7 @@ export default class TextEncoder {
     // Create a fixed size array that gets sliced at the end
     const bytes = new Uint8Array(codePoints.length * 4);
     let j = 0;
-    let i, codePoint;
+    let i; let codePoint;
 
     for (i = 0; i < codePoints.length; i++) {
       codePoint = codePoints[i];
@@ -198,7 +198,7 @@ export default class TextEncoder {
     let remainingBytes = 0;
     let i = -1;
     let j = 0;
-    let byte, codePoint;
+    let byte; let codePoint;
 
     while (++i < size) {
       byte = bytes[i];

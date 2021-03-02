@@ -60,15 +60,33 @@ export const pageContents = [
     title: 'Hash Generators',
     content: [
       { id: 'sha1', title: 'SHA1', type: 'hash' },
+      { id: 'sha224', title: 'SHA224', type: 'hash' },
       { id: 'sha256', title: 'SHA256', type: 'hash' },
+      { id: 'sha384', title: 'SHA384', type: 'hash' },
       { id: 'sha512', title: 'SHA512', type: 'hash' },
       { id: 'ripe160', title: 'RipeMD-160', type: 'hash' },
       { id: 'crc32', title: 'CRC32', type: 'hash' },
       { id: 'adler32', title: 'Adler-32', type: 'hash' },
       { id: 'whirlpool', title: 'Whirlpool', type: 'hash' },
-      { id: 'md2', title: 'MD2', type: 'hash' },
-      { id: 'md4', title: 'MD4', type: 'hash' },
       { id: 'md5', title: 'MD5', type: 'hash' },
+    ],
+  },
+  {
+    title: 'Block Cipher',
+    options: [
+      {
+        type: 'cbc',
+        title: 'CBC',
+      },
+      {
+        type: 'ecb',
+        title: 'ECB',
+      },
+    ],
+    content: [
+      { id: 'aes128', title: 'AES-128', type: 'block' },
+      { id: 'aes192', title: 'AES-192', type: 'block' },
+      { id: 'aes256', title: 'AES-256', type: 'block' },
     ],
   },
   {
@@ -81,19 +99,19 @@ export const pageContents = [
         options: [
           {
             name: 'hasLowercase',
-            title: 'Lowercase Chars ( abcdefgh )',
+            title: 'Lowercase Chars ( ex: abcd )',
           },
           {
             name: 'hasUppercase',
-            title: 'Uppercase Chars ( ABCDEFGH )',
+            title: 'Uppercase Chars ( ex: ABCD )',
           },
           {
             name: 'hasNumbers',
-            title: 'Include Numbers ( 123456 )',
+            title: 'Include Numbers ( ex: 1234 )',
           },
           {
             name: 'hasSymbols',
-            title: 'Include Symbols ( !@#$%&* )',
+            title: 'Include Symbols ( ex: !@#$ )',
           },
         ],
       },

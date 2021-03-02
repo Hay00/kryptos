@@ -1,6 +1,8 @@
+import TextEncoder from './Text/';
+
 export default class ShuffleText {
   encode(input) {
-    let array = input.split('');
+    let array = TextEncoder.codePointsFromString(input);
 
     var currentIndex = array.length,
       temporaryValue,
@@ -18,6 +20,6 @@ export default class ShuffleText {
       array[randomIndex] = temporaryValue;
     }
 
-    return array.join('');
+    return TextEncoder.stringFromCodePoints(array);
   }
 }
