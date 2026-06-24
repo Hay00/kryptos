@@ -42,15 +42,15 @@ export default function InputModal({ isOpen, item, onClose }) {
   /**
    * Validate user input `text` and properly encode for its type
    */
-  function encode() {
+  async function encode() {
     try {
       if (passLength > 0 || text.length > 0) {
         if (type === 'password') {
-          setEncodedText(myUtil.encode(passLength, checkBoxes));
+          setEncodedText(await myUtil.encode(passLength, checkBoxes));
         } else if (type === 'block') {
-          setEncodedText(myUtil.encode(text, blockType, secretKey));
+          setEncodedText(await myUtil.encode(text, blockType, secretKey));
         } else {
-          setEncodedText(myUtil.encode(text));
+          setEncodedText(await myUtil.encode(text));
         }
       } else {
         const errMsg =
