@@ -8,6 +8,7 @@ import Header from './components/Header';
 // Pages
 import MainPage from './pages/Main';
 
+// Create and export a component called 'App'
 export default function App() {
   return (
     <div>
