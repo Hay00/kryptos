@@ -67,28 +67,30 @@ export const pageContents = [
       { id: 'ripe160', title: 'RipeMD-160', type: 'hash' },
       { id: 'crc32', title: 'CRC32', type: 'hash' },
       { id: 'adler32', title: 'Adler-32', type: 'hash' },
-      { id: 'whirlpool', title: 'Whirlpool', type: 'hash' },
+      // TODO: Implement this Hash type!
+      // { id: 'whirlpool', title: 'Whirlpool', type: 'hash' },
       { id: 'md5', title: 'MD5', type: 'hash' },
     ],
   },
-  {
-    title: 'Block Cipher',
-    options: [
-      {
-        type: 'cbc',
-        title: 'CBC',
-      },
-      {
-        type: 'ecb',
-        title: 'ECB',
-      },
-    ],
-    content: [
-      { id: 'aes128', title: 'AES-128', type: 'block' },
-      { id: 'aes192', title: 'AES-192', type: 'block' },
-      { id: 'aes256', title: 'AES-256', type: 'block' },
-    ],
-  },
+  // TODO: Refactor this whole section, it's totally wrong, plus the methods are now outdated...
+  // {
+  //   title: 'Block Cipher',
+  //   options: [
+  //     {
+  //       type: 'cbc',
+  //       title: 'CBC',
+  //     },
+  //     {
+  //       type: 'ecb',
+  //       title: 'ECB',
+  //     },
+  //   ],
+  //   content: [
+  //     { id: 'aes128', title: 'AES-128', type: 'block' },
+  //     { id: 'aes192', title: 'AES-192', type: 'block' },
+  //     { id: 'aes256', title: 'AES-256', type: 'block' },
+  //   ],
+  // },
   {
     title: 'Misc Tools',
     content: [
@@ -120,11 +122,12 @@ export const pageContents = [
         title: 'Shuffle Text',
         type: 'transform',
       },
-      {
-        id: 'addNonsense',
-        title: 'Add Nonsense in the Text',
-        type: 'transform',
-      },
+      // TODO: Implement this section!
+      // {
+      //   id: 'addNonsense',
+      //   title: 'Add Nonsense in the Text',
+      //   type: 'transform',
+      // },
     ],
   },
 ];
