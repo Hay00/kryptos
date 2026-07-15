@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface StyledCheckboxProps {
+  checked: boolean;
+}
+
 export const Container = styled.label`
   display: inline-flex;
   vertical-align: middle;
@@ -28,7 +32,7 @@ export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   width: 1px;
 `;
 
-export const StyledCheckbox = styled.div`
+export const StyledCheckbox = styled.div<StyledCheckboxProps>`
   display: inline-block;
   width: 18px;
   height: 18px;
