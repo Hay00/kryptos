@@ -1,13 +1,17 @@
-import React from 'react';
+import { CheckboxProps } from './checkbox.interface';
 import {
+  CheckboxLabel,
   Container,
   HiddenCheckbox,
-  StyledCheckbox,
   Icon,
-  CheckboxLabel,
-} from './styles';
+  StyledCheckbox,
+} from './checkbox.styles';
 
-export default function Checkbox({ checked, children, ...props }) {
+export default function Checkbox({
+  checked,
+  children,
+  ...props
+}: Readonly<CheckboxProps>) {
   return (
     <Container>
       <div style={{ height: '20px' }}>

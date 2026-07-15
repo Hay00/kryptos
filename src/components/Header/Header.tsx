@@ -1,7 +1,6 @@
-import React from 'react';
-import { Container, Logo, Title, About } from './styles';
+import { Container, Logo, Title, About } from './header.styles';
 
-import logoImage from '../../assets/logo-512.png';
+import logoImage from '@/assets/logo-512.png';
 
 export default function Header() {
   return (

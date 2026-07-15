@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface LabelProps {
+  cancel?: boolean;
+}
+
 const Button = styled.button`
   display: inline-flex;
   align-items: center;
@@ -10,7 +14,8 @@ const Button = styled.button`
   margin: 8px;
   cursor: pointer;
 
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
@@ -41,7 +46,7 @@ export const Cancel = styled(Button)`
   }
 `;
 
-export const Label = styled.span`
+export const Label = styled.span<LabelProps>`
   text-align: center;
   color: ${(props) => (props.cancel ? '#fff' : '#000')};
   font-size: 0.875rem;
