@@ -1,5 +1,10 @@
 export default class Sha256 {
-  encode(input) {
-    return require('crypto').createHash('sha256').update(input).digest('hex');
+  async encode(input) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    return new Uint8Array(hashBuffer).toHex();
   }
 }
