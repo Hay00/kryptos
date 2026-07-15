@@ -18,8 +18,8 @@ export default class Adler32 {
     let a = 1;
     let b = 0;
     // Encode each byte
-    for (let index = 0; index < charArr.length; ++index) {
-      a = (a + charArr[index]) % MOD_ADLER;
+    for (const element of charArr) {
+      a = (a + element) % MOD_ADLER;
       b = (b + a) % MOD_ADLER;
     }
     return this.decimalToHexString((b << 16) | a);

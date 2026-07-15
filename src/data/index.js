@@ -51,7 +51,7 @@ export const pageContents = [
     content: [
       { id: 'base64', title: 'Base64', type: 'encoder' },
       { id: 'rot13', title: 'ROT-13', type: 'encoder' },
-      { id: 'cesarShift', title: 'Cesar Shift', type: 'encoder' },
+      { id: 'caesarShift', title: 'Caesar Shift', type: 'encoder' },
       { id: 'morseCode', title: 'Morse', type: 'encoder' },
       { id: 'hackerize', title: 'Hackerize', type: 'encoder' },
     ],

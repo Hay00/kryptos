@@ -4,7 +4,7 @@ import aes128 from './aes128';
 import aes192 from './aes192';
 import aes256 from './aes256';
 import base64 from './base64';
-import cesarShift from './cesarShift';
+import caesarShift from './caesarShift';
 import crc32 from './crc32';
 import escapeString from './escapeString';
 import hackerize from './hackerize';
@@ -37,7 +37,7 @@ const UTILS = {
   aes192,
   aes256,
   base64,
-  cesarShift,
+  caesarShift,
   crc32,
   escapeString,
   hackerize,
