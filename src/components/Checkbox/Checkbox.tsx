@@ -10,12 +10,12 @@ import {
 export default function Checkbox({
   checked,
   children,
-  ...props
+  onChange,
 }: Readonly<CheckboxProps>) {
   return (
     <Container>
       <div style={{ height: '20px' }}>
-        <HiddenCheckbox checked={checked} {...props} />
+        <HiddenCheckbox checked={checked} onChange={onChange} />
         <StyledCheckbox checked={checked}>
           <Icon viewBox="0 0 24 24">
             <polyline points="20 6 9 17 4 12" />

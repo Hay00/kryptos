@@ -8,13 +8,7 @@ import { defineConfig } from 'eslint/config';
 export default defineConfig(
   // Global ignores (files that ESLint should never check)
   {
-    ignores: [
-      'dist',
-      'node_modules',
-      'coverage',
-      '*.config.ts',
-      'eslint-plugins.d.ts',
-    ],
+    ignores: ['dist', 'node_modules', 'coverage', '*.config.ts'],
   },
 
   // Base recommended rules for JavaScript/TypeScript
