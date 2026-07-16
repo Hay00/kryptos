@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
+import { Button, Checkbox } from '@/components';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
-import Button from '../../../components/Button';
-import Checkbox from '../../../components/Checkbox';
+
+import UtilFactory from '../../../utils';
+
+import type { ModalProps } from '../main-page.interface';
+import type {
+  CheckboxName,
+  FieldCanDecode,
+  InterfaceInputModal,
+  LabelsName,
+} from './input-modal.interface';
+
 import {
   ButtonsContainer,
   CancelButtonContainer,
@@ -15,26 +25,29 @@ import {
   Select,
   TextArea,
   Title,
-} from './styles';
-import UtilFactory from '../../../utils';
+} from './input-modal.styles';
 
 const initialOptions = {
-  hasLowercase: false,
-  hasUppercase: false,
-  hasNumbers: false,
-  hasSymbols: false,
+  lowercase: false,
+  uppercase: false,
+  numbers: false,
+  symbols: false,
 };
 
-export default function InputModal({ isOpen, item, onClose }) {
+export default function InputModal({
+  isOpen,
+  item,
+  onClose,
+}: Readonly<InterfaceInputModal>) {
   const { id, type, title, options } = item;
 
   // Modal input and output
   const [text, setText] = useState('');
   const [encodedText, setEncodedText] = useState('');
   const [secretKey, setSecretKey] = useState('');
-  const [passLength, setPasswordLength] = useState(25);
+  const [passLength, setPassLength] = useState<number>(25);
   const [blockType, setBlockType] = useState('cbc');
-  const [checkBoxes, setOptions] = useState(initialOptions);
+  const [checkBoxes, setCheckBoxes] = useState(initialOptions);
 
   // Create a new util for encoding and decoding input
   const myUtil = UtilFactory.createInstance(id);
@@ -84,8 +97,8 @@ export default function InputModal({ isOpen, item, onClose }) {
    * @param {String} name option to update
    * @param {Event} event component event
    */
-  function optionChange(name, event) {
-    setOptions({ ...checkBoxes, [name]: event.target.checked });
+  function optionChange(name: string, event: ChangeEvent<HTMLInputElement>) {
+    setCheckBoxes({ ...checkBoxes, [name]: event.target.checked });
   }
 
   /**
@@ -94,9 +107,13 @@ export default function InputModal({ isOpen, item, onClose }) {
   function handleClose() {
     setText('');
     setEncodedText('');
-    setOptions(initialOptions);
-    setPasswordLength(25);
+    setCheckBoxes(initialOptions);
+    setPassLength(25);
     onClose();
+  }
+
+  function shouldBeChecked(name: CheckboxName): boolean {
+    return checkBoxes[name] ?? false;
   }
 
   /**
@@ -105,7 +122,7 @@ export default function InputModal({ isOpen, item, onClose }) {
    * * Render Function
    * @param {String} type item type
    */
-  function modalInput(type) {
+  function modalInput(type: ModalProps['type']) {
     switch (type) {
       case 'password':
         return (
@@ -115,14 +132,14 @@ export default function InputModal({ isOpen, item, onClose }) {
               <Input
                 type="number"
                 value={passLength}
-                onChange={(e) => setPasswordLength(e.target.value)}
+                onChange={(e) => setPassLength(Number.parseInt(e.target.value))}
               />
             </InputContainer>
             <div style={{ marginTop: '12px' }}>
-              {options.map((item, key) => (
+              {options?.map((item, index) => (
                 <Checkbox
-                  key={key}
-                  checked={checkBoxes[item.name]}
+                  key={item.name + index}
+                  checked={shouldBeChecked(item.name as CheckboxName)}
                   onChange={(e) => optionChange(item.name, e)}
                 >
                   {item.title}
@@ -145,7 +162,7 @@ export default function InputModal({ isOpen, item, onClose }) {
               <InputLabel>Secret Key:</InputLabel>
               <Input
                 type="text"
-                large
+                size="large"
                 value={secretKey}
                 onChange={(e) => setSecretKey(e.target.value)}
               />
@@ -180,8 +197,9 @@ export default function InputModal({ isOpen, item, onClose }) {
    * * Render Function
    * @param {String} type item type
    */
-  function modalButtons(type) {
-    const encodeLabels = {
+  function modalButtons(type: ModalProps['type']) {
+    const encodeLabels: LabelsName = {
+      none: 'None',
       encoder: 'Encode',
       hash: 'Create Hash',
       block: 'Encrypt',
@@ -189,7 +207,8 @@ export default function InputModal({ isOpen, item, onClose }) {
       transform: 'Transform Text',
     };
 
-    const canDecode = {
+    const canDecode: FieldCanDecode = {
+      none: false,
       encoder: true,
       hash: false,
       block: true,
@@ -224,7 +243,7 @@ export default function InputModal({ isOpen, item, onClose }) {
         />
       </ModalContent>
       <CancelButtonContainer>
-        <Button cancel onClick={handleClose} label={'Close'} />
+        <Button cancel onClick={handleClose} label="Close" />
       </CancelButtonContainer>
     </Content>
   );

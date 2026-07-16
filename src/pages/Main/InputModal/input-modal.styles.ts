@@ -1,10 +1,11 @@
+import Modal from 'react-modal';
 import styled from 'styled-components';
 
-import Modal from 'react-modal';
+import { ContainerProps, InputProps } from './input-modal.interface';
 
 Modal.setAppElement('#root');
 
-export const Container = styled.div`
+export const Container = styled.div<ContainerProps>`
   display: ${(props) => (props.show ? 'flex' : 'none')};
   position: fixed;
   top: 0;
@@ -133,9 +134,9 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
   @media (min-width: 513px) {
-    width: ${({ large }) => (large ? '819px' : 'auto')};
+    width: ${({ size }) => (size === 'large' ? '819px' : 'auto')};
   }
   @media (max-width: 375px) {
     width: 100%;
