@@ -1,4 +1,6 @@
-export const pageContents = [
+import { PageContents } from './data.interface';
+
+export const rawPageContents: PageContents[] = [
   {
     title: 'String conversions',
     content: [
@@ -100,19 +102,19 @@ export const pageContents = [
         type: 'password',
         options: [
           {
-            name: 'hasLowercase',
+            name: 'lowercase',
             title: 'Lowercase Chars ( ex: abcd )',
           },
           {
-            name: 'hasUppercase',
+            name: 'uppercase',
             title: 'Uppercase Chars ( ex: ABCD )',
           },
           {
-            name: 'hasNumbers',
+            name: 'numbers',
             title: 'Include Numbers ( ex: 1234 )',
           },
           {
-            name: 'hasSymbols',
+            name: 'symbols',
             title: 'Include Symbols ( ex: !@#$ )',
           },
         ],
