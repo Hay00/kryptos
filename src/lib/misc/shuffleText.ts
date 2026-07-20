@@ -1,17 +1,18 @@
-import TextEncoder from './Text/';
+import { getRandomIndex } from '@/utils';
+import TextEncoder from '@/utils/Text';
 
 export default class ShuffleText {
-  encode(input) {
-    let array = TextEncoder.codePointsFromString(input);
+  encode(input: string) {
+    const array = TextEncoder.codePointsFromString(input);
 
-    var currentIndex = array.length,
+    let currentIndex = array.length,
       temporaryValue,
       randomIndex;
 
     // While there remain elements to shuffle
     while (0 !== currentIndex) {
       // Pick a remaining element
-      randomIndex = Math.floor(Math.random() * currentIndex);
+      randomIndex = getRandomIndex(currentIndex);
       currentIndex -= 1;
 
       // And swap it with the current element
