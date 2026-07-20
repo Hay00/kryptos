@@ -8,7 +8,7 @@ export default class TextEncoder {
    * @param {number} codePoint
    * @return {boolean} True, if valid
    */
-  static validateCodePoint(codePoint) {
+  static validateCodePoint(codePoint: number) {
     return (
       Number.isFinite(codePoint) &&
       codePoint >= 0 &&
@@ -22,7 +22,7 @@ export default class TextEncoder {
    * @param {number[]} codePoints
    * @return {boolean} True, if valid
    */
-  static validateCodePoints(codePoints) {
+  static validateCodePoints(codePoints: number[]) {
     let valid = true;
     let i = 0;
     while (valid && i < codePoints.length) {
@@ -40,13 +40,14 @@ export default class TextEncoder {
    * @param {number[]} codePoints Array of Unicode code points
    * @returns {String} String (UCS-2)
    */
-  static stringFromCodePoints(codePoints) {
+  static stringFromCodePoints(codePoints: number[]) {
     // In the worst case every code point needs to be translated to two
     // surrogates each
     // Create a fixed size array that gets sliced at the end
     const codeUnits = new Array(codePoints.length * 2);
     let j = 0;
-    let i; let codePoint;
+    let i;
+    let codePoint;
 
     for (i = 0; i < codePoints.length; i++) {
       codePoint = codePoints[i];
@@ -78,14 +79,15 @@ export default class TextEncoder {
    * @param {String} string String (UCS-2)
    * @returns {number[]} Array of Unicode code points
    */
-  static codePointsFromString(string) {
+  static codePointsFromString(string: string) {
     // In the worst case every string code unit needs to be translated to
     // a single code point each
     // Create a fixed size array that gets sliced at the end
-    const {length} = string;
+    const { length } = string;
     const codePoints = new Array(length);
 
-    let codeUnit; let nextCodeUnit;
+    let codeUnit;
+    let nextCodeUnit;
     let j = 0;
     let i = 0;
 
@@ -124,7 +126,7 @@ export default class TextEncoder {
    * @throws {Error} Throws an error if given encoding is not supported.
    * @return {Uint8Array} Uint8Array of bytes
    */
-  static bytesFromCodePoints(codePoints, encoding = 'utf8') {
+  static bytesFromCodePoints(codePoints: number[], encoding = 'utf8') {
     switch (encoding) {
       case 'utf8':
         return TextEncoder._encodeCodePointsToUTF8Bytes(codePoints);
@@ -143,7 +145,7 @@ export default class TextEncoder {
    * @throws {Error} Throws an error if given bytes are malformed.
    * @return {number[]} Array of Unicode code points
    */
-  static codePointsFromBytes(bytes, encoding = 'utf8') {
+  static codePointsFromBytes(bytes: Uint8Array, encoding = 'utf8') {
     switch (encoding) {
       case 'utf8':
         return TextEncoder._decodeCodePointsFromUTF8Bytes(bytes);
@@ -154,12 +156,13 @@ export default class TextEncoder {
     }
   }
 
-  static _encodeCodePointsToUTF8Bytes(codePoints) {
+  static _encodeCodePointsToUTF8Bytes(codePoints: number[]) {
     // In the worst case every code point needs to be represented by 4 bytes
     // Create a fixed size array that gets sliced at the end
     const bytes = new Uint8Array(codePoints.length * 4);
     let j = 0;
-    let i; let codePoint;
+    let i;
+    let codePoint;
 
     for (i = 0; i < codePoints.length; i++) {
       codePoint = codePoints[i];
@@ -189,7 +192,7 @@ export default class TextEncoder {
     return bytes.slice(0, j);
   }
 
-  static _decodeCodePointsFromUTF8Bytes(bytes) {
+  static _decodeCodePointsFromUTF8Bytes(bytes: number[]) {
     // In the worst case byte needs to be represented by one code point
     // Create a fixed size array that gets sliced at the end
     const size = bytes.length;
@@ -198,7 +201,8 @@ export default class TextEncoder {
     let remainingBytes = 0;
     let i = -1;
     let j = 0;
-    let byte; let codePoint;
+    let byte;
+    let codePoint;
 
     while (++i < size) {
       byte = bytes[i];

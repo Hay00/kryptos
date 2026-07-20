@@ -27,14 +27,18 @@ export const __byteLength = Symbol('byteLength');
 export const __blockOffset = Symbol('blockOffset');
 export const __bufferOffset = Symbol('bufferOffset');
 
-export function uint32ToUint8ArrayBE(value, target, offset) {
+export function uint32ToUint8ArrayBE(
+  value: number,
+  target: Uint8Array,
+  offset: number
+) {
   target[offset + 0] = (value >>> 0x18) & 0xff;
   target[offset + 1] = (value >>> 0x10) & 0xff;
   target[offset + 2] = (value >>> 0x08) & 0xff;
   target[offset + 3] = (value >>> 0x00) & 0xff;
 }
 
-export function uint8ArrayToUint32BE(source, offset) {
+export function uint8ArrayToUint32BE(source: Uint8Array, offset: number) {
   return (
     ((source[offset + 0] << 0x18) |
       (source[offset + 1] << 0x10) |
@@ -44,7 +48,12 @@ export function uint8ArrayToUint32BE(source, offset) {
   );
 }
 
-export function uint8TailToUint32BE(source, offset, length, last) {
+export function uint8TailToUint32BE(
+  source: Uint8Array,
+  offset: number,
+  length: number,
+  last: number
+) {
   switch (length) {
     case 0:
       return (last << 0x18) >>> 0;
@@ -74,24 +83,24 @@ export function uint8TailToUint32BE(source, offset, length, last) {
  * @param { number } n
  * @param { number } x
  */
-function ROTR(n, x) {
+function ROTR(n: number, x: number) {
   return (x >>> n) | (x << (32 - n));
 }
 
 /**@param { number } x */
-export function Σ0(x) {
+export function Σ0(x: number) {
   return ROTR(2, x) ^ ROTR(13, x) ^ ROTR(22, x);
 }
 /**@param { number } x */
-export function Σ1(x) {
+export function Σ1(x: number) {
   return ROTR(6, x) ^ ROTR(11, x) ^ ROTR(25, x);
 }
 /**@param { number } x */
-export function σ0(x) {
+export function σ0(x: number) {
   return ROTR(7, x) ^ ROTR(18, x) ^ (x >>> 3);
 }
 /**@param { number } x */
-export function σ1(x) {
+export function σ1(x: number) {
   return ROTR(17, x) ^ ROTR(19, x) ^ (x >>> 10);
 }
 /**
@@ -99,7 +108,7 @@ export function σ1(x) {
  * @param { number } y
  * @param { number } z
  */
-export function Ch(x, y, z) {
+export function Ch(x: number, y: number, z: number) {
   return (x & y) ^ (~x & z);
 }
 /**
@@ -107,7 +116,7 @@ export function Ch(x, y, z) {
  * @param { number } y
  * @param { number } z
  */
-export function Maj(x, y, z) {
+export function Maj(x: number, y: number, z: number) {
   return (x & y) ^ (x & z) ^ (y & z);
 }
 
@@ -116,7 +125,7 @@ export function Maj(x, y, z) {
  * @param { Uint32Array } W
  * @param { Uint32Array } block
  */
-export function hash(H, W, block) {
+export function hash(H: Uint32Array, W: Uint32Array, block: Uint32Array) {
   for (let t = 0; t < 16; t++) W[t] = block[t];
 
   for (let t = 16; t < 64; t++)
@@ -165,13 +174,13 @@ export function hash(H, W, block) {
  * @param { number } byteLength
  */
 export function finalize(
-  block,
-  buffer,
-  H,
-  W,
-  blockOffset,
-  bufferOffset,
-  byteLength
+  block: Uint32Array,
+  buffer: Uint8Array,
+  H: Uint32Array,
+  W: Uint32Array,
+  blockOffset: number,
+  bufferOffset: number,
+  byteLength: number
 ) {
   block[blockOffset++] = uint8TailToUint32BE(buffer, 0, bufferOffset, 0x80);
   if (blockOffset > 14) {
@@ -190,7 +199,7 @@ export class CryptoHasher {
   /**
    * @param { ReadonlyArrayLike<number>} init
    */
-  constructor(init) {
+  constructor(init: Readonly<ArrayLike<number>>) {
     this[__H].set(init);
   }
   /**
@@ -227,7 +236,7 @@ export class CryptoHasher {
    *
    * @param { Uint8Array } data
    */
-  update(data) {
+  update(data: Uint8Array) {
     if (data.length === 0) return;
 
     this[__byteLength] += data.byteLength;
@@ -319,7 +328,7 @@ export class CryptoHasher {
 }
 
 export default class Sha224 {
-  sha224(source) {
+  sha224(source: Uint8Array<ArrayBufferLike>) {
     const msgLength = source.byteLength;
     const payloadLength = msgLength + 1;
     const payloadBlocks = Math.ceil(payloadLength / 64);
@@ -376,7 +385,7 @@ export default class Sha224 {
     return result;
   }
 
-  async encode(input) {
+  async encode(input: string) {
     const encoder = new TextEncoder();
     const data = encoder.encode(input);
 

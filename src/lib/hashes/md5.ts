@@ -29,9 +29,9 @@ const S44 = 21;
  * @param {Uint8Array} bytes Bytes to be encoded
  * @return {Uint8Array} Md5 message digest
  */
-function md5(bytes) {
+function md5(input: Uint8Array) {
   // make array mutable
-  bytes = Array.from(bytes);
+  const bytes = Array.from(input);
 
   // track number of bytes before preprocessing
   const b = bytes.length;
@@ -103,10 +103,8 @@ function md5(bytes) {
   return new Uint8Array(result);
 }
 
-function md5Transform(context, block) {
+function md5Transform(context: number[], block: number[]): void {
   let [a, b, c, d] = context;
-
-  /* eslint-disable no-multi-spaces */
 
   // round 1
   a = ff(a, b, c, d, block[0], S11, 0xd76aa478);
@@ -180,8 +178,6 @@ function md5Transform(context, block) {
   c = ii(c, d, a, b, block[2], S43, 0x2ad7d2bb);
   b = ii(b, c, d, a, block[9], S44, 0xeb86d391);
 
-  /* eslint-enable no-multi-spaces */
-
   // increment each of the four registers by the value it had before this block
   // was started
   context[0] = add32(a, context[0]);
@@ -190,33 +186,72 @@ function md5Transform(context, block) {
   context[3] = add32(d, context[3]);
 }
 
-function add32(a, b) {
+function add32(a: number, b: number): number {
   return (a + b) & 0xffffffff;
 }
 
-function cmn(q, a, b, x, s, t) {
+function cmn(
+  q: number,
+  a: number,
+  b: number,
+  x: number,
+  s: number,
+  t: number
+): number {
   a = add32(add32(a, q), add32(x, t));
   return add32((a << s) | (a >>> (32 - s)), b);
 }
 
-function ff(a, b, c, d, x, s, t) {
+function ff(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  x: number,
+  s: number,
+  t: number
+): number {
   return cmn((b & c) | (~b & d), a, b, x, s, t);
 }
 
-function gg(a, b, c, d, x, s, t) {
+function gg(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  x: number,
+  s: number,
+  t: number
+): number {
   return cmn((b & d) | (c & ~d), a, b, x, s, t);
 }
 
-function hh(a, b, c, d, x, s, t) {
+function hh(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  x: number,
+  s: number,
+  t: number
+): number {
   return cmn(b ^ c ^ d, a, b, x, s, t);
 }
 
-function ii(a, b, c, d, x, s, t) {
+function ii(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  x: number,
+  s: number,
+  t: number
+): number {
   return cmn(c ^ (b | ~d), a, b, x, s, t);
 }
 
 export default class Md5 {
-  encode(input) {
+  encode(input: string) {
     const hashBuffer = md5(new TextEncoder().encode(input));
     return new Uint8Array(hashBuffer).toHex();
   }
