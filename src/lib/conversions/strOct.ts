@@ -1,20 +1,23 @@
-import TextEncoder from './Text/';
+import TextEncoder from '../../utils/Text';
 
 export default class StrToOct {
-  encode(input) {
+  encode(input: string) {
     // Get code points from the string
-    input = TextEncoder.codePointsFromString(input);
-    return Array.from(input)
+    const codePoints = TextEncoder.codePointsFromString(input);
+    const result = Array.from(codePoints)
       .map((char) => char.toString(8))
       .join(' ');
+
+    return result;
   }
 
-  decode(input) {
+  decode(input: string) {
     input = input.trimEnd();
     // Create an array with each code point and converts to decimal
     const result = Array.from(input.split(' ')).map((char) =>
-      parseInt(char, 8).toString()
+      Number.parseInt(char, 8)
     );
+
     // Then convert code points to string
     return TextEncoder.stringFromCodePoints(result);
   }

@@ -1,18 +1,18 @@
-import TextEncoder from './Text/';
+import TextEncoder from '../../utils/Text';
 
 export default class ReverseString {
-  encode(input) {
+  encode(input: string) {
     return this.swapChars(input);
   }
 
-  decode(input) {
+  decode(input: string) {
     return this.swapChars(input);
   }
 
-  swapChars(str) {
-    str = TextEncoder.codePointsFromString(str);
+  swapChars(input: string) {
+    const str = TextEncoder.codePointsFromString(input);
     const inputLen = str.length - 1;
-    let output = [];
+    const output = [];
     // Just inverts characters positions
     for (let i = inputLen; i >= 0; i--) {
       output.push(str[i]);
