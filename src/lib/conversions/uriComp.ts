@@ -1,9 +1,9 @@
 export default class UriComp {
-  encode(input) {
+  encode(input: string) {
     return encodeURIComponent(input);
   }
 
-  decode(input) {
+  decode(input: string) {
     return decodeURIComponent(input);
   }
 }

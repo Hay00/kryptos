@@ -1,20 +1,24 @@
-import TextEncoder from './Text/';
+import TextEncoder from '../../utils/Text';
 
 export default class StringToBin {
-  encode(input) {
+  encode(input: string) {
     // Get code points from the string
-    input = TextEncoder.codePointsFromString(input);
-    return Array.from(input)
+    const codePoints = TextEncoder.codePointsFromString(input);
+    const result = Array.from(codePoints)
       .map((char) => char.toString(2))
       .join(' ');
+
+    return result;
   }
 
-  decode(input) {
+  decode(input: string) {
     input = input.trimEnd();
+
     // Create an array with each code point and converts to decimal
     const result = Array.from(input.split(' ')).map((char) =>
-      parseInt(char, 2).toString()
+      Number.parseInt(char, 2)
     );
+
     // Then convert code points to string
     return TextEncoder.stringFromCodePoints(result);
   }

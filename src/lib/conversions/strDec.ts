@@ -1,16 +1,16 @@
-import TextEncoder from './Text/';
+import TextEncoder from '../../utils/Text';
 
 export default class StrToDec {
-  encode(input) {
+  encode(input: string) {
     // Get code points from the string
-    input = TextEncoder.codePointsFromString(input);
-    return Array.from(input).join(' ');
+    const codePoints = TextEncoder.codePointsFromString(input);
+    return Array.from(codePoints).join(' ');
   }
 
-  decode(input) {
+  decode(input: string) {
     input = input.trimEnd(); // Avoids parsing error
     // Create an array with each code point
-    const result = Array.from(input.split(' '));
+    const result = Array.from(input.split(' ')).map(Number);
     // Then convert code points to string
     return TextEncoder.stringFromCodePoints(result);
   }
