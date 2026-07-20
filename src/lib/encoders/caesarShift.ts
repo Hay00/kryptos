@@ -1,13 +1,16 @@
 export default class CaesarShift {
   shiftAmount = 3;
 
-  caesarCipher(value, shift) {
+  caesarCipher(value: string, shift: number) {
     const normalized = ((shift % 26) + 26) % 26;
 
     return value
       .split('')
       .map((char) => {
         const code = char.codePointAt(0);
+
+        if (code === undefined) return char;
+
         // ASCII 65 to 90
         if (code >= 65 && code <= 90) {
           return String.fromCodePoint(((code - 65 + normalized) % 26) + 65);
@@ -24,11 +27,11 @@ export default class CaesarShift {
       .join('');
   }
 
-  encode(input) {
+  encode(input: string) {
     return this.caesarCipher(input, this.shiftAmount);
   }
 
-  decode(input) {
+  decode(input: string) {
     return this.caesarCipher(input, -this.shiftAmount);
   }
 }

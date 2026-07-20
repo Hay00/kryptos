@@ -57,9 +57,9 @@ export default class MorseCode {
     '.--.-.',
   ];
 
-  encode(input) {
+  encode(input: string) {
     return Array.from(
-      input.trimEnd().toLowerCase().replace(/\n/g, '').split(' ')
+      input.trimEnd().toLowerCase().replaceAll('\n', '').split(' ')
     )
       .map((word) =>
         Array.from(word)
@@ -77,7 +77,7 @@ export default class MorseCode {
       .join(' / ');
   }
 
-  decode(input) {
+  decode(input: string) {
     return Array.from(input.split(' / '))
       .map((word) =>
         Array.from(word.split(' '))
