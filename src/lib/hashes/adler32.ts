@@ -1,7 +1,7 @@
-import TextEncoder from './Text';
+import TextEncoder from '../../utils/Text';
 
 export default class Adler32 {
-  encode(input) {
+  encode(input: string) {
     const codePoints = TextEncoder.codePointsFromString(input);
     const bytes = TextEncoder.bytesFromCodePoints(codePoints);
     const encodedText = this.bytesToAdler32(bytes);
@@ -13,7 +13,7 @@ export default class Adler32 {
    * @param {Uint8Array} charArr code points array
    * @returns {String} hexadecimal string
    */
-  bytesToAdler32(charArr) {
+  bytesToAdler32(charArr: Uint8Array) {
     const MOD_ADLER = 65521; // Adler 32 modulo
     let a = 1;
     let b = 0;
@@ -31,7 +31,7 @@ export default class Adler32 {
    * @param {Number} number decimal number
    * @returns {String} positive hexadecimal string
    */
-  decimalToHexString(number) {
+  decimalToHexString(number: number) {
     if (number < 0) {
       number = 0xffffffff + number + 1;
     }

@@ -1,10 +1,10 @@
 export default class Crc32 {
   createTable() {
-    var c;
-    var crcTable = [];
-    for (var n = 0; n < 256; n++) {
+    let c: number;
+    const crcTable: number[] = [];
+    for (let n = 0; n < 256; n++) {
       c = n;
-      for (var k = 0; k < 8; k++) {
+      for (let k = 0; k < 8; k++) {
         c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
       }
       crcTable[n] = c;
@@ -12,11 +12,11 @@ export default class Crc32 {
     return crcTable;
   }
 
-  encode(input) {
-    let table = this.createTable();
+  encode(input: string): string {
+    const table = this.createTable();
     let C = 0 ^ -1;
-    for (var i = 0, L = input.length, c, d; i < L; ) {
-      c = input.charCodeAt(i++);
+    for (let i = 0, L = input.length, c, d; i < L; ) {
+      c = input.codePointAt(i++) || 0;
       if (c < 0x80) {
         C = (C >>> 8) ^ table[(C ^ c) & 0xff];
       } else if (c < 0x800) {
@@ -24,7 +24,7 @@ export default class Crc32 {
         C = (C >>> 8) ^ table[(C ^ (128 | (c & 63))) & 0xff];
       } else if (c >= 0xd800 && c < 0xe000) {
         c = (c & 1023) + 64;
-        d = input.charCodeAt(i++) & 1023;
+        d = (input.codePointAt(i++) || 0) & 1023;
         C = (C >>> 8) ^ table[(C ^ (240 | ((c >> 8) & 7))) & 0xff];
         C = (C >>> 8) ^ table[(C ^ (128 | ((c >> 2) & 63))) & 0xff];
         C =

@@ -1,5 +1,5 @@
 export default class Sha1 {
-  async encode(input) {
+  async encode(input: string) {
     const encoder = new TextEncoder();
     const data = encoder.encode(input);
 
