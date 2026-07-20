@@ -1,24 +1,31 @@
+import { CheckboxName } from '@/pages/Main/InputModal/input-modal.interface';
+import { getRandomIndex } from '@/utils';
+
+type Options = {
+  [key in CheckboxName]: boolean;
+};
+
 export default class PassGenerator {
   lower = 'abcdefghijklmnopqrstuvwxyz';
   upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   numbers = '0123456789';
   symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
 
-  encode(passLength, options) {
-    const { hasLowercase, hasUppercase, hasNumbers, hasSymbols } = options;
+  encode(passLength: number, options: Options) {
+    const { lowercase, uppercase, numbers, symbols } = options;
     let chars = '';
 
     // Concat possible password characters
-    if (hasLowercase) {
+    if (lowercase) {
       chars += this.lower;
     }
-    if (hasUppercase) {
+    if (uppercase) {
       chars += this.upper;
     }
-    if (hasNumbers) {
+    if (numbers) {
       chars += this.numbers;
     }
-    if (hasSymbols) {
+    if (symbols) {
       chars += this.symbols;
     }
 
@@ -30,7 +37,7 @@ export default class PassGenerator {
     let password = '';
     // Draw a character until it reaches the desired size password length
     for (let i = 0; i < passLength; i++) {
-      password += chars[Math.floor(Math.random() * chars.length)];
+      password += chars[getRandomIndex(chars.length)];
     }
     return password;
   }
