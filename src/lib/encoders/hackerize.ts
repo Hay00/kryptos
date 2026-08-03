@@ -11,10 +11,12 @@ export default class Hackerize {
   }
 
   swapChars(str: string, encode = true) {
-    const charList = encode ? this.hackerized : this.alphabet;
+    const baseList = encode ? this.hackerized : this.alphabet;
+    const replaceList = encode ? this.alphabet : this.hackerized;
+
     return str
       .split('')
-      .map((c) => charList[this.alphabet.indexOf(c)] || c)
+      .map((c) => baseList[replaceList.indexOf(c)] || c)
       .join('');
   }
 }
