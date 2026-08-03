@@ -116,6 +116,7 @@ export default class TextEncoder {
     }
 
     // Slice the fixed size array to the portion actually in use
+    // TODO: Fix this return type
     return codePoints.slice(0, j);
   }
 
@@ -193,57 +194,54 @@ export default class TextEncoder {
   }
 
   static _decodeCodePointsFromUTF8Bytes(bytes: number[]) {
-    // In the worst case byte needs to be represented by one code point
-    // Create a fixed size array that gets sliced at the end
     const size = bytes.length;
     const codePoints = new Array(size);
 
     let remainingBytes = 0;
-    let i = -1;
+    let i = 0;
     let j = 0;
-    let byte;
-    let codePoint;
+    let codePoint = 0;
 
-    while (++i < size) {
-      byte = bytes[i];
+    while (i < size) {
+      const byte = bytes[i];
 
-      if (byte > 0b01111111 && byte <= 0b10111111) {
-        // Continuation byte identified
-        if (--remainingBytes < 0) {
+      // --- Phase 1: Currently inside a multi-byte sequence ---
+      if (remainingBytes > 0) {
+        // Must be a continuation byte (0b10xxxxxx)
+        if (byte < 0b10000000 || byte > 0b10111111) {
           throw new Error(
             `Invalid UTF-8 encoded text: ` +
-              `Unexpected continuation byte at 0x${i.toString(16)}`,
+              `Continuation byte expected at 0x${i.toString(16)}`,
             i
           );
         }
 
-        // Append bits to current code point
-        codePoint = (codePoint << 6) | (byte & 0x3f);
+        // Append the lower 6 bits to the code point
+        codePoint = (codePoint << 6) | (byte & 0b00111111);
+        remainingBytes--;
 
         if (remainingBytes === 0) {
-          // Completed a code point
-          codePoints[j++] = codePoint;
+          codePoints[j++] = codePoint; // Sequence complete
         }
-      } else if (remainingBytes > 0) {
-        // this must be a continuation byte
-        throw new Error(
-          `Invalid UTF-8 encoded text: ` +
-            `Continuation byte expected at 0x${i.toString(16)}`,
-          i
-        );
-      } else if (byte <= 0b01111111) {
-        // 1 byte code point
+
+        i++;
+        continue;
+      }
+
+      // --- Phase 2: Starting a new character (remainingBytes === 0) ---
+      if (byte <= 0b01111111) {
+        // 1-byte sequence (ASCII)
         codePoints[j++] = byte;
       } else if (byte <= 0b11011111) {
-        // 2 byte code point
+        // 2-byte sequence: 110xxxxx
         codePoint = byte & 0b00011111;
         remainingBytes = 1;
       } else if (byte <= 0b11101111) {
-        // 3 byte code point
+        // 3-byte sequence: 1110xxxx
         codePoint = byte & 0b00001111;
         remainingBytes = 2;
       } else if (byte <= 0b11110111) {
-        // 4 byte code point
+        // 4-byte sequence: 11110xxx
         codePoint = byte & 0b00000111;
         remainingBytes = 3;
       } else {
@@ -253,13 +251,15 @@ export default class TextEncoder {
           i
         );
       }
+
+      i++;
     }
 
+    // Ensure the last sequence wasn't cut off
     if (remainingBytes !== 0) {
       throw new Error(`Invalid UTF-8 encoded text: Unexpected end of bytes`);
     }
 
-    // Slice the fixed size array to the portion actually in use
     return codePoints.slice(0, j);
   }
 }
