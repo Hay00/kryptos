@@ -10,4 +10,4 @@ export { default as sha384 } from './sha384';
 export { default as sha512 } from './sha512';
 
 // TODO: The one bellow needs to be implemented!
-//export * from './whirlpool';
+export { default as whirlpool } from './whirlpool';
