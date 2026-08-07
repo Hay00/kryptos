@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-interface ModalProps {
-  showModal: boolean;
-}
-
-export const ModalSection = styled.div<ModalProps>`
+export const ModalSection = styled.div`
   margin: auto;
 
   @media only screen and (min-width: 2000px) {

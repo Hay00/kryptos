@@ -1,56 +1,45 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Frame, ItemButton } from '@/components';
+import { type Content, rawPageContents, ContentType } from '@/data';
 
-import { type Content, rawPageContents } from '@/data';
+import Modal from './Modal/Modal';
 
-import InputModal from './InputModal/InputModal';
-
-import { ModalProps } from './main-page.interface';
 import { ModalSection } from './main-page.styles';
+import { ModalContent } from './Modal/modal.interface';
 
-const DEFAULT_MODAL_STATE: ModalProps = {
-  id: '',
-  title: '',
+const DEFAULT_MODAL_STATE: ModalContent = {
+  id: 'none',
   type: 'none',
+  kind: 'none',
+  title: '',
   options: [],
   show: false,
 };
 
 export default function MainPage() {
-  const [modal, setModal] = useState<ModalProps>(DEFAULT_MODAL_STATE);
+  const [modal, setModal] = useState<ModalContent>(DEFAULT_MODAL_STATE);
 
-  /**
-   * Shows modal
-   * @param {Object} item modal item
-   */
-  function handleOpen(item: Content) {
-    if (item.type === 'password' && item.options) {
-      const options = Object.assign(
-        {},
-        ...item.options.map(({ name }) => ({ [name]: true }))
-      );
-      setModal({ ...item, options, show: true });
-    }
-    setModal({ ...item, show: true });
-  }
+  const handleOpen = useCallback((item: Content, type: ContentType) => {
+    setModal({ ...item, type, show: true });
+  }, []);
 
-  /**
-   * Hides modal
-   */
-  function closeModal() {
+  const handleClose = useCallback(() => {
     setModal(DEFAULT_MODAL_STATE);
-  }
+  }, []);
 
   return (
     <div>
-      <ModalSection showModal={modal.show}>
+      <ModalSection>
         <ul>
-          {rawPageContents.map((section, index) => (
-            <li key={index + section.title}>
+          {rawPageContents.map((section) => (
+            <li key={section.title}>
               <Frame title={section.title}>
                 {section.content.map((item) => (
-                  <ItemButton key={item.id} onClick={() => handleOpen(item)}>
+                  <ItemButton
+                    key={item.id}
+                    onClick={() => handleOpen(item, section.type)}
+                  >
                     {item.title}
                   </ItemButton>
                 ))}
@@ -59,7 +48,7 @@ export default function MainPage() {
           ))}
         </ul>
       </ModalSection>
-      <InputModal isOpen={modal.show} item={modal} onClose={closeModal} />
+      <Modal isOpen={modal.show} item={modal} onClose={handleClose} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import styled from 'styled-components';
 
-import { ContainerProps, InputProps } from './input-modal.interface';
+import { ContainerProps, InputProps } from './modal.interface';
 
 Modal.setAppElement('#root');
 
