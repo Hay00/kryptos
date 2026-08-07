@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface LabelProps {
-  cancel?: boolean;
+  type: 'primary' | 'cancel';
 }
 
 const Button = styled.button`
@@ -32,14 +32,14 @@ const Button = styled.button`
   }
 `;
 
-export const Primary = styled(Button)`
+export const PrimaryButton = styled(Button)`
   background-color: #e0e0e0;
   :hover {
     background-color: #aeaeae;
   }
 `;
 
-export const Cancel = styled(Button)`
+export const CancelButton = styled(Button)`
   background-color: #d32f2f;
   :hover {
     background-color: #9a0007;
@@ -48,7 +48,7 @@ export const Cancel = styled(Button)`
 
 export const Label = styled.span<LabelProps>`
   text-align: center;
-  color: ${(props) => (props.cancel ? '#fff' : '#000')};
+  color: ${(props) => (props.type === 'cancel' ? '#fff' : '#000')};
   font-size: 0.875rem;
   line-height: 1.75;
   text-transform: uppercase;

@@ -1,6 +1,6 @@
 export interface ButtonProps {
   label: string;
   children?: React.ReactNode;
-  cancel?: boolean;
+  type?: 'primary' | 'cancel';
   onClick: () => void;
 }
