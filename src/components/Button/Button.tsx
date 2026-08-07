@@ -1,25 +1,25 @@
 import { ButtonProps } from './button.interface';
-import { Primary, Cancel, Label } from './button.styles';
+import { PrimaryButton, CancelButton, Label } from './button.styles';
 
 export default function Button({
   children,
   label,
   onClick,
-  cancel,
+  type = 'primary',
 }: Readonly<ButtonProps>) {
-  if (cancel) {
+  if (type === 'cancel') {
     return (
-      <Cancel onClick={onClick}>
-        <Label cancel={cancel}>{label}</Label>
+      <CancelButton onClick={onClick}>
+        <Label type={type}>{label}</Label>
         {children}
-      </Cancel>
+      </CancelButton>
     );
   }
 
   return (
-    <Primary onClick={onClick}>
-      <Label>{label}</Label>
+    <PrimaryButton onClick={onClick}>
+      <Label type={type}>{label}</Label>
       {children}
-    </Primary>
+    </PrimaryButton>
   );
 }
