@@ -1,3 +1,4 @@
+import { LibError } from '@/errors/LibError';
 import { Aes128, Aes192, Aes256 } from '@/libs/ciphers';
 
 import {
@@ -174,7 +175,7 @@ export default class Libs {
       }
 
       default: {
-        throw new Error(`Unsupported type: ${type}`);
+        throw new LibError(`Unsupported type: ${type}`, 'notSupported');
       }
     }
 
@@ -183,7 +184,7 @@ export default class Libs {
 
   cipher() {
     if (this.type !== 'cipher') {
-      throw new Error(`Type not supported: ${this.type}`);
+      throw new LibError(`Type not supported: ${this.type}`, 'notSupported');
     }
 
     return (
@@ -194,7 +195,7 @@ export default class Libs {
 
   misc() {
     if (this.type !== 'misc') {
-      throw new Error(`Type not supported: ${this.type}`);
+      throw new LibError(`Type not supported: ${this.type}`, 'notSupported');
     }
 
     return (
@@ -204,7 +205,7 @@ export default class Libs {
 
   oneWayTransform() {
     if (this.type !== 'hashing') {
-      throw new Error(`Type not supported: ${this.type}`);
+      throw new LibError(`Type not supported: ${this.type}`, 'notSupported');
     }
 
     return (
@@ -228,6 +229,6 @@ export default class Libs {
       );
     }
 
-    throw new Error(`Type not supported: ${this.type}`);
+    throw new LibError(`Type not supported: ${this.type}`, 'notSupported');
   }
 }

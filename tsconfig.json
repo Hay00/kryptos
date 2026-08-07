@@ -21,6 +21,7 @@
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"],
       "@libs/*": ["./src/libs/*"],
+      "@errors/*": ["./src/errors/*"],
     }
   },
   "include": ["src"],
