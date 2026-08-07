@@ -20,6 +20,7 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"],
+      "@assets/*": ["./src/assets/*"],
       "@libs/*": ["./src/libs/*"],
       "@errors/*": ["./src/errors/*"],
       "@utils/*": ["./src/utils/*"]
